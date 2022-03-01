@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import clsx from 'clsx';
 
 interface MainViewProps {
@@ -6,12 +6,46 @@ interface MainViewProps {
 }
 
 const MainView: FC<MainViewProps> = ({ className }) => {
+	const [wordIndex, setWordIndex] = useState(0);
+
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			setWordIndex((prevState) => (prevState >= 2 ? 0 : prevState + 1));
+		}, 3000);
+		return () => clearTimeout(timeout);
+	}, [wordIndex]);
+
 	return (
 		<main className={clsx(className, 'w-full flex-1 flex flex-col items-center')}>
 			<section className='max-w-7xl mx-auto w-full pt-40 px-8' id='fluidity'>
-				<h1 className='text-7xl font-bold'>
-					Stream money with <span className='text-indigo-700 font-extrabold'>fluidity</span>
-				</h1>
+				<h2 className='text-3xl font-bold'>Bootstrap your DAO with</h2>
+				<h1 className='text-[8rem] text-indigo-700 font-extrabold'>fluidity</h1>
+				<div className='mt-16 max-w-2xl space-y-4'>
+					<p className='text-xl text-black'>
+						With <span className='text-indigo-700 font-extrabold'>fluidity</span>:
+					</p>
+					<ol className='space-y-2 text-lg'>
+						<li>
+							<span className='mr-2' role='img' aria-label='document'>
+								📄
+							</span>{' '}
+							create smart contracts to manage your NFT memberships
+						</li>
+						<li>
+							<span className='mr-2' role='img' aria-label='water-wave'>
+								🌊
+							</span>{' '}
+							provide a vesting schedule through streaming tokens over a period of time
+						</li>
+						<li>
+							<span className='mr-2' role='img' aria-label='money-with-wings'>
+								💸
+							</span>{' '}
+							gain liquidity in your treasury with stables, ETH, or your choice of token
+						</li>
+						<li></li>
+					</ol>
+				</div>
 			</section>
 			<section className='max-w-7xl mx-auto w-full pt-40 px-8' id='team'>
 				<h1 className='text-7xl font-bold'>team</h1>
