@@ -7,7 +7,7 @@ interface MainLayoutProps {
 }
 
 const MainLayout: FC<MainLayoutProps> = ({ className, children }) => {
-	return <main className={clsx(className, 'min-h-screen flex flex-col justify-center items-center')}>{children}</main>;
+	return <div className={clsx(className, 'min-h-screen flex flex-col justify-center items-center')}>{children}</div>;
 };
 
 MainLayout.displayName = 'MainLayout';
