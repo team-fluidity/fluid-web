@@ -1,5 +1,5 @@
-import clsx from 'clsx';
 import { FC } from 'react';
+import clsx from 'clsx';
 
 interface MainViewProps {
 	className?: string;
@@ -7,14 +7,14 @@ interface MainViewProps {
 
 const MainView: FC<MainViewProps> = ({ className }) => {
 	return (
-		<main className={clsx(className, 'min-h-screen p-16 flex-1 flex flex-col justify-center items-center')}>
+		<div className={clsx(className, 'p-16 flex-1 flex flex-col items-center')}>
 			<h1 className='text-7xl leading-5 font-bold'>
-				Welcome to{' '}
-				<a className='text-blue-500' href='https://nextjs.org'>
-					Team Fluidity
+				Stream with{' '}
+				<a className='text-indigo-500' href='https://nextjs.org'>
+					Fluidity
 				</a>
 			</h1>
-		</main>
+		</div>
 	);
 };
 

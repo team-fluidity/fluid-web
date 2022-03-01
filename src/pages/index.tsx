@@ -1,16 +1,22 @@
+import { Fragment } from 'react';
 import type { NextPage } from 'next';
 
-import Footer from 'src/layout/Footer';
-import HeadTags from 'src/layout/Head/HeadTags';
+import Footer from 'src/layouts/Footer';
+import HeadTags from 'src/layouts/Head/HeadTags';
+import MainLayout from 'src/layouts/MainLayout';
+import TopBar from 'src/layouts/TopBar';
 import MainView from 'src/views/MainView';
 
 const Home: NextPage = () => {
 	return (
-		<div className='px-8'>
+		<Fragment>
 			<HeadTags />
-			<MainView />
+			<MainLayout>
+				<TopBar />
+				<MainView />
+			</MainLayout>
 			<Footer />
-		</div>
+		</Fragment>
 	);
 };
 
