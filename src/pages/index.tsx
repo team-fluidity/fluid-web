@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import MainView from 'src/views/MainView';
 
 const Home: NextPage = () => {
 	return (
@@ -11,14 +12,7 @@ const Home: NextPage = () => {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
-			<main className='min-h-screen p-16 flex-1 flex flex-col justify-center items-center'>
-				<h1 className='text-7xl leading-5 font-bold'>
-					Welcome to{' '}
-					<a className='text-blue-500' href='https://nextjs.org'>
-						Team Fluidity
-					</a>
-				</h1>
-			</main>
+			<MainView />
 
 			<footer className='py-8 flex justify-center items-center border-t border-t-gray-300'>
 				<a
