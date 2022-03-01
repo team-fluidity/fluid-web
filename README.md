@@ -1,22 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Fluidity
+
+This project is created for the web3con hackathon (https://www.web3con.dev/hackathon) and is created by `Team Fluidity`
+
+This repo is the front-end of our project Fluidity.  This project is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+#### 1. Install npm packages
+
+```bash
+npm install
+```
+
+#### 2. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Contributing
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Please do the following to contribute to this repo
+
+#### 1. Fork, or create a branch (if you are part of Team Fluidity)
+#### 2. Create a pull request with details about your contribution
+
+## Hosting / Deployment
+
+This site is currently hosted automatically by Vercel.
+
+To create your own deployment bundle / mimic the production site locally:
+#### 1. Build the project
+
+```bash
+npm run build
+```
+
+#### 2. Run the build locally
+
+```bash
+npm start
+```
 
 ## Learn More
 

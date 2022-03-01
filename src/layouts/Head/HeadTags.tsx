@@ -1,13 +1,16 @@
 import { FC } from 'react';
 import Head from 'next/head';
 
-interface HeadTagsProps {}
+interface HeadTagsProps {
+	title?: string;
+	description?: string;
+}
 
-const HeadTags: FC<HeadTagsProps> = () => {
+const HeadTags: FC<HeadTagsProps> = ({ title, description }) => {
 	return (
 		<Head>
-			<title>Team Fluidity</title>
-			<meta name='description' content='Team Fluidity for Web3Con Hackathon' />
+			<title>{title ?? 'Fluidity'}</title>
+			<meta name='description' content={description ?? 'Team Fluidity for Web3Con Hackathon'} />
 			<link rel='icon' href='/favicon.ico' />
 		</Head>
 	);
