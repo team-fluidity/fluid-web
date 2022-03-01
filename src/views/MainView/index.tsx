@@ -1,25 +1,56 @@
 import { FC, useEffect, useState } from 'react';
 import clsx from 'clsx';
+import { useWallet, useWriteContract } from '@web3-ui/hooks';
+
+import hostJSON from 'src/abis/ISuperfluid.json';
+import cfaJSON from 'src/abis/IConstantFlowAgreementV1.json';
+import Web3ConNFTJSON from 'src/abis/Web3ConNFT.json';
+import { HOST_ADDRESS, CFA_ADDRESS, TRADEABLE_CASHFLOW_ADDRESS } from 'src/constants';
+import { IConstantFlowAgreementV1, ISuperfluid, Web3ConNFT } from 'src/types/contracts';
 
 interface MainViewProps {
 	className?: string;
 }
 
-const MainView: FC<MainViewProps> = ({ className }) => {
-	const [wordIndex, setWordIndex] = useState(0);
+interface NftContractItem {
+	name: string;
+	baseUri: string;
+}
 
+const MainView: FC<MainViewProps> = ({ className }) => {
+	const { connection } = useWallet();
+	const [hostContract, hostContractIsReady] = useWriteContract<ISuperfluid>(HOST_ADDRESS, hostJSON.abi);
+	const [cfaContract, cfaContractIsReady] = useWriteContract<IConstantFlowAgreementV1>(CFA_ADDRESS, cfaJSON.abi);
+	const [nftContract, nftContractIsReady] = useWriteContract<Web3ConNFT>(TRADEABLE_CASHFLOW_ADDRESS, Web3ConNFTJSON.abi);
+	const [nftContractItem, setNftContractItem] = useState<NftContractItem | null>(null);
+
+	// For nftContract, call a function
+	// Example: Get name of nftContract (which returns a promise)
 	useEffect(() => {
-		const timeout = setTimeout(() => {
-			setWordIndex((prevState) => (prevState >= 2 ? 0 : prevState + 1));
-		}, 3000);
-		return () => clearTimeout(timeout);
-	}, [wordIndex]);
+		const getNftContractMetadata = async () => {
+			if (nftContract) {
+				const name = await nftContract.name();
+				const baseUri = await nftContract.baseURI();
+				setNftContractItem({
+					name: name,
+					baseUri: baseUri
+				});
+			}
+		};
+
+		if (nftContract && nftContractIsReady) {
+			getNftContractMetadata();
+		}
+	}, [nftContract, nftContractIsReady]);
 
 	return (
 		<main className={clsx(className, 'w-full flex-1 flex flex-col items-center')}>
 			<section className='max-w-7xl mx-auto w-full pt-40 px-8' id='fluidity'>
 				<h2 className='text-3xl font-bold'>Bootstrap your DAO with</h2>
-				<h1 className='text-[8rem] text-indigo-700 font-extrabold'>fluidity</h1>
+				<h1 className='text-7xl sm:text-[8rem] text-indigo-700 font-extrabold'>fluidity</h1>
+				<h2 className='mt-8 text-3xl font-bold'>
+					Stream <span className='text-indigo-500'>token</span> over a period of time
+				</h2>
 				<div className='mt-16 max-w-2xl space-y-4'>
 					<p className='text-xl text-black'>
 						With <span className='text-indigo-700 font-extrabold'>fluidity</span>:
@@ -46,6 +77,57 @@ const MainView: FC<MainViewProps> = ({ className }) => {
 						<li></li>
 					</ol>
 				</div>
+			</section>
+			<section className='max-w-7xl mx-auto w-full pt-40 px-8' id='contract-testing'>
+				<h1 className='text-7xl font-bold'>contract testing</h1>
+				<div className='mt-4 text-lg'>
+					<b>Wallet:</b> {connection.ens || connection.userAddress || 'Not connected'}
+				</div>
+				{hostContract && (
+					<div className='mt-4'>
+						<div className='text-lg font-bold'>Host Contract Details</div>
+						<ol>
+							<li>
+								<b>Address:</b> {hostContract.address}
+							</li>
+							<li>
+								<b>isReady:</b> {hostContractIsReady.toString()}
+							</li>
+						</ol>
+					</div>
+				)}
+				{cfaContract && (
+					<div className='mt-4'>
+						<div className='text-lg font-bold'>CFA Contract Details</div>
+						<ol>
+							<li>
+								<b>Address:</b> {cfaContract.address}
+							</li>
+							<li>
+								<b>isReady:</b> {cfaContractIsReady.toString()}
+							</li>
+						</ol>
+					</div>
+				)}
+				{nftContract && (
+					<div className='mt-4'>
+						<div className='text-lg font-bold'>NFT Contract Details</div>
+						<ol>
+							<li>
+								<b>Address:</b> {nftContract.address}
+							</li>
+							<li>
+								<b>isReady:</b> {nftContractIsReady.toString()}
+							</li>
+							<li>
+								<b>Name:</b> {nftContractItem?.name}
+							</li>
+							<li>
+								<b>Base URI:</b> {nftContractItem?.baseUri}
+							</li>
+						</ol>
+					</div>
+				)}
 			</section>
 			<section className='max-w-7xl mx-auto w-full pt-40 px-8' id='team'>
 				<h1 className='text-7xl font-bold'>team</h1>
