@@ -23,6 +23,8 @@ const MainView: FC<MainViewProps> = ({ className }) => {
 	const [cfaContract, cfaContractIsReady] = useWriteContract<IConstantFlowAgreementV1>(CFA_ADDRESS, cfaJSON.abi);
 	const [nftContract, nftContractIsReady] = useWriteContract<Web3ConNFT>(TRADEABLE_CASHFLOW_ADDRESS, Web3ConNFTJSON.abi);
 	const [nftContractItem, setNftContractItem] = useState<NftContractItem | null>(null);
+	const [ nftName ] = useState('');
+	const [ nftSymbol ] = useState('');
 
 	// For nftContract, call a function
 	// Example: Get name of nftContract (which returns a promise)
@@ -42,6 +44,11 @@ const MainView: FC<MainViewProps> = ({ className }) => {
 			getNftContractMetadata();
 		}
 	}, [nftContract, nftContractIsReady]);
+
+	const StartContract = () => {
+		console.log('start contract function')
+		// need to get form data here 
+	}
 
 	return (
 		<main className={clsx(className, 'w-full flex-1 flex flex-col items-center')}>
@@ -76,6 +83,27 @@ const MainView: FC<MainViewProps> = ({ className }) => {
 						</li>
 						<li></li>
 					</ol>
+				</div>
+			</section>
+			<section className='max-w-7xl mx-auto w-full pt-40 px-8'>
+				<div>
+					<h1 className='text-7xl font-bold'>Deploy the contract</h1>
+					<p className='mt-4'>Begin by entering an NFT name and symbol.</p>
+				</div>
+				<div className='w-3/4 mt-4 flex gap-4'>
+					<form onSubmit={StartContract}>
+						<div className='flex gap-4'>
+							<input id='nftname' type="text" className='w-3/6 px-3 form-control border border-solid border-gray-300 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none' placeholder='NFT Name'></input>
+							<input id='nft-symbol' type="text" className='w-3/6 px-3 form-control border border-solid border-gray-300 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none' placeholder='NFT Symbol'></input>
+						</div>
+						<div className='w-96 flex gap-4'>
+							<button type='button' onClick={StartContract} className='float-left mt-6 py-2 px-4 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 hover:from-red-500 hover:to-red-700 text-white font-bold'>
+							Mint
+							</button>
+							{/* would help to disable this before contract is initiatied */}
+							<p className='mt-6 py-2 float-right'>Contract Address: {nftContract || ''}</p>
+						</div>
+					</form>
 				</div>
 			</section>
 			<section className='max-w-7xl mx-auto w-full pt-40 px-8' id='contract-testing'>
