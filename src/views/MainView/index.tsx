@@ -102,7 +102,7 @@ const MainView: FC<MainViewProps> = ({ className }) => {
 							<p className='mt-4'>Begin by entering an NFT name and symbol.</p>
 						</div>
 						<form className='' onSubmit={HandleStartContract}>
-							<div className='flex gap-4'>
+							<div className='flex gap-4 mt-4'>
 								<input value={nftName} onChange={(e) => setNFTName(e.target.value)} id='nftname' type="text" className='w-3/6 px-3 form-control border border-solid border-gray-300 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none' placeholder='NFT Name'></input>
 								<input value={nftSymbol} onChange={(e) => setNFTSymbol(e.target.value)} id='nft-symbol' type="text" className='w-3/6 px-3 form-control border border-solid border-gray-300 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none' placeholder='NFT Symbol'></input>
 							</div>
@@ -110,8 +110,6 @@ const MainView: FC<MainViewProps> = ({ className }) => {
 								<button type='submit' className='float-left mt-6 py-2 px-4 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 hover:from-red-500 hover:to-red-700 text-white font-bold'>
 								Mint
 								</button>
-								{/* would help to disable this before contract is initiatied */}
-								{/* <p className='mt-6 py-2 float-right'>Contract Address: {nftContract || ''}</p> */}
 							</div>
 						</form>
 					</div> ) : (
@@ -119,19 +117,8 @@ const MainView: FC<MainViewProps> = ({ className }) => {
 						<h1 className='bg-gradient-to-r'>Please connect your wallet to continue</h1>
 						<ConnectWallet className='mt-4'/>
 					</div>
-					)}
-
-
-				{/* {!connection && (
-					<div className='py-4'>
-						<h1 className='bg-gradient-to-r'>Please connect your wallet to continue</h1>
-						<ConnectWallet className='mt-4'/>
-					</div>
-				)} */}
-			
-			</section>
-
-			
+					)}			
+			</section>		
 			<section className='max-w-7xl mx-auto w-full pt-40 px-8' id='contract-testing'>
 				<h1 className='text-7xl font-bold'>contract testing</h1>
 				<div className='mt-4 text-lg'>
