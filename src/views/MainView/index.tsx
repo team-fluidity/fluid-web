@@ -23,8 +23,8 @@ const MainView: FC<MainViewProps> = ({ className }) => {
 	const [cfaContract, cfaContractIsReady] = useWriteContract<IConstantFlowAgreementV1>(CFA_ADDRESS, cfaJSON.abi);
 	const [nftContract, nftContractIsReady] = useWriteContract<Web3ConNFT>(TRADEABLE_CASHFLOW_ADDRESS, Web3ConNFTJSON.abi);
 	const [nftContractItem, setNftContractItem] = useState<NftContractItem | null>(null);
-	const [ nftName ] = useState('');
-	const [ nftSymbol ] = useState('');
+	const [ nftName, nftNameChange ] = useState('');
+	const [ nftSymbol, nftSymbolChange ] = useState('');
 
 	// For nftContract, call a function
 	// Example: Get name of nftContract (which returns a promise)
@@ -45,8 +45,11 @@ const MainView: FC<MainViewProps> = ({ className }) => {
 		}
 	}, [nftContract, nftContractIsReady]);
 
-	const StartContract = () => {
-		console.log('start contract function')
+	function StartContract(event: SubmitEvent) {
+		event.preventDefault();
+		console.log('start contract function');
+		console.log('Here is the nft name: ', nftName);
+		console.log('Here is the nft symbol name: ', nftSymbol);
 		// need to get form data here 
 	}
 
@@ -93,11 +96,11 @@ const MainView: FC<MainViewProps> = ({ className }) => {
 				<div className='w-3/4 mt-4 flex gap-4'>
 					<form onSubmit={StartContract}>
 						<div className='flex gap-4'>
-							<input id='nftname' type="text" className='w-3/6 px-3 form-control border border-solid border-gray-300 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none' placeholder='NFT Name'></input>
-							<input id='nft-symbol' type="text" className='w-3/6 px-3 form-control border border-solid border-gray-300 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none' placeholder='NFT Symbol'></input>
+							<input value={nftName} onChange={(e) => nftNameChange(e.target.value)} id='nftname' type="text" className='w-3/6 px-3 form-control border border-solid border-gray-300 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none' placeholder='NFT Name'></input>
+							<input value={nftSymbol} onChange={(e) => nftSymbolChange(e.target.value)} id='nft-symbol' type="text" className='w-3/6 px-3 form-control border border-solid border-gray-300 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none' placeholder='NFT Symbol'></input>
 						</div>
 						<div className='w-96 flex gap-4'>
-							<button type='button' onClick={StartContract} className='float-left mt-6 py-2 px-4 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 hover:from-red-500 hover:to-red-700 text-white font-bold'>
+							<button type='submit' className='float-left mt-6 py-2 px-4 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 hover:from-red-500 hover:to-red-700 text-white font-bold'>
 							Mint
 							</button>
 							{/* would help to disable this before contract is initiatied */}
