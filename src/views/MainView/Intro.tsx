@@ -1,6 +1,9 @@
+import Link from "next/link";
+import Button from "src/components/button";
+
 export const Intro = () => {
     return <>
-        <section className='bg-gradient-to-r from-indigo-900 to-indigo-400 mx-auto w-full p-20 px-8 h-4/5' id='fluidity'>
+        <section style={{ minHeight: '95vh' }} className='bg-gradient-to-r from-indigo-900 to-indigo-400 mx-auto w-full p-20 px-8 h-4/5' id='fluidity'>
             <div className="pl-32 w-full">
                 <h2 className='text-3xl font-bold text-white content'>Bootstrap your DAO with</h2>
                 <h1 className='text-7xl sm:text-[8rem] text-indigo-400 font-extrabold'>fluidity</h1>
@@ -34,6 +37,16 @@ export const Intro = () => {
                     </li>
                     <li></li>
                 </ol>
+            </div>
+
+            <div className='mt-16 space-y-4 pl-32'>
+                <Link href='/mint'>
+                    <a>
+                        <Button>
+                            Start a stream
+                        </Button>
+                    </a>
+                </Link>
             </div>
         </section>
     </>;
