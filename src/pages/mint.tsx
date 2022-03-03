@@ -6,7 +6,7 @@ import { MintToken } from 'src/views/MainView/MintToken';
 const Mint: NextPage = () => {
     return (
         <PageLayout>
-            <MintToken/>
+            <MintToken />
         </PageLayout>
     )
 }
