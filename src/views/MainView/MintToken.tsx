@@ -4,16 +4,21 @@ import { ethers } from 'ethers';
 import { HOST_ADDRESS, CFA_ADDRESS, FDAIX_ADDRESS } from 'src/constants';
 import ConnectWallet from 'src/components/ConnectWallet';
 import Web3ConNFTJSON from 'src/abis/Web3ConNFT.json';
+import { ContractInfo } from './ContractInfo';
 
-export const StartStreaming = () => {
+export const MintToken = () => {
     const { connection, connected } = useWallet();
+    const [ streamStarted, setStreamStarted ] = useState(Boolean);
 
     const handleStartContract = async (nftName: string, nftSymbol: string) => {
         if (connection && connection.signer) {
             console.log('Creating a contract with nft name: ', nftName, ' and nft symbol: ', nftSymbol);
             const factory = new ethers.ContractFactory(Web3ConNFTJSON.abi, Web3ConNFTJSON.bytecode, connection.signer);
             const contract = await factory.deploy(connection.userAddress, nftName, nftSymbol, HOST_ADDRESS, CFA_ADDRESS, FDAIX_ADDRESS, connection.userAddress);
-            console.log('contract', contract);
+            if (contract) {
+                console.log('contract started', contract);
+                setStreamStarted(true)
+            }
         }
         else {
             console.log('Wallet not connected')
@@ -33,6 +38,9 @@ export const StartStreaming = () => {
                 </div>
             )}
         </section>
+        {streamStarted && (
+            <ContractInfo />
+        )}
     </>;
 };
 
