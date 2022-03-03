@@ -25,8 +25,8 @@ const MainView: FC<MainViewProps> = ({ className }) => {
 	const [cfaContract, cfaContractIsReady] = useWriteContract<IConstantFlowAgreementV1>(CFA_ADDRESS, cfaJSON.abi);
 	const [nftContract, nftContractIsReady] = useWriteContract<Web3ConNFT>(TRADEABLE_CASHFLOW_ADDRESS, Web3ConNFTJSON.abi);
 	const [nftContractItem, setNftContractItem] = useState<NftContractItem | null>(null);
-	const [ nftName, setNFTName ] = useState('');
-	const [ nftSymbol, setNFTSymbol ] = useState('');
+	const [nftName, setNFTName] = useState('');
+	const [nftSymbol, setNFTSymbol] = useState('');
 
 	// For nftContract, call a function
 	// Example: Get name of nftContract (which returns a promise)
@@ -54,7 +54,7 @@ const MainView: FC<MainViewProps> = ({ className }) => {
 			const factory = new ethers.ContractFactory(Web3ConNFTJSON.abi, Web3ConNFTJSON.bytecode, connection.signer)
 			const contract = await factory.deploy(connection.userAddress, nftName, nftSymbol, HOST_ADDRESS, CFA_ADDRESS, FDAIX_ADDRESS, connection.userAddress)
 		}
-		
+
 	}
 
 	return (
@@ -92,11 +92,11 @@ const MainView: FC<MainViewProps> = ({ className }) => {
 					</ol>
 				</div>
 			</section>
-			<section className='max-w-7xl mx-auto w-full pt-40 px-8'>
-					<div>
-						<h1 className='text-7xl font-bold'>Start a stream</h1>
-					</div>
-				{connected ? (	
+			<section className='max-w-7xl mx-auto w-full pt-40 px-8' id='start'>
+				<div>
+					<h1 className='text-7xl font-bold'>Start a stream</h1>
+				</div>
+				{connected ? (
 					<div className='mt-4 w-3/6 gap-4'>
 						<div>
 							<p className='mt-4'>Begin by entering an NFT name and symbol.</p>
@@ -108,17 +108,17 @@ const MainView: FC<MainViewProps> = ({ className }) => {
 							</div>
 							<div className='w-96 flex gap-4'>
 								<button type='submit' className='float-left mt-6 py-2 px-4 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 hover:from-red-500 hover:to-red-700 text-white font-bold'>
-								Mint
+									Mint
 								</button>
 							</div>
 						</form>
-					</div> ) : (
+					</div>) : (
 					<div className='py-4'>
 						<h1 className='bg-gradient-to-r'>Please connect your wallet to continue</h1>
-						<ConnectWallet className='mt-4'/>
+						<ConnectWallet className='mt-4' />
 					</div>
-					)}			
-			</section>		
+				)}
+			</section>
 			<section className='max-w-7xl mx-auto w-full pt-40 px-8' id='contract-testing'>
 				<h1 className='text-7xl font-bold'>contract testing</h1>
 				<div className='mt-4 text-lg'>
