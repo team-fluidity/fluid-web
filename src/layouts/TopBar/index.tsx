@@ -2,17 +2,17 @@ import { FC, useState } from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { useWallet } from '@web3-ui/core';
-import { Address } from '@web3-ui/components';
 import { Disclosure } from '@headlessui/react';
 import { MenuIcon } from '@heroicons/react/solid';
 
-import ConnectWallet from 'src/components/ConnectWallet';
+import TopLink from './TopLink';
+import { Wallet } from './Wallet';
 
 interface TopBarProps {
 	className?: string;
 }
 
-const TopBar: FC<TopBarProps> = ({ className }) => {
+const TopBar = ({ className }: TopBarProps) => {
 	const { connection } = useWallet();
 
 	return (
@@ -22,34 +22,13 @@ const TopBar: FC<TopBarProps> = ({ className }) => {
 					<div className='py-4 text-4xl text-indigo-700 font-extrabold'>fluidity</div>
 					{/* Desktop Header Items + Connect Wallet button */}
 					<div className='hidden sm:flex items-center gap-16 text-xl'>
-						<Link href='#fluidity'>
-							<a>
-								<button type='button' className='font-bold text-gray-700 hover:text-gray-500'>
-									fluidity
-								</button>
-							</a>
-						</Link>
-						<Link href='#team'>
-							<a>
-								<button type='button' className='font-bold text-gray-700 hover:text-gray-500'>
-									team
-								</button>
-							</a>
-						</Link>
-						<Link href='#faq'>
-							<a>
-								<button type='button' className='font-bold text-gray-700 hover:text-gray-500'>
-									faq
-								</button>
-							</a>
-						</Link>
+						<TopLink href="#fluidity" text="fluidity" />
+						<TopLink href="#team" text="team" />
+						<TopLink href="#faq" text="faq" />
+						<TopLink href="#start" text="start a stream" />
 					</div>
 					<div className='hidden sm:flex'>
-						{connection.ens || connection.userAddress ? (
-							<Address value={connection.ens || connection.userAddress || ''} shortened copiable />
-						) : (
-							<ConnectWallet />
-						)}
+						<Wallet ens={connection.ens} userAddress={connection.userAddress} />
 					</div>
 					{/* Mobile Header */}
 					<div className='sm:hidden'>
@@ -78,11 +57,7 @@ const TopBar: FC<TopBarProps> = ({ className }) => {
 							</a>
 						</Link>
 						<div>
-							{connection.ens || connection.userAddress ? (
-								<Address value={connection.ens || connection.userAddress || ''} shortened copiable />
-							) : (
-								<ConnectWallet />
-							)}
+							<Wallet ens={connection.ens} userAddress={connection.userAddress} />
 						</div>
 					</div>
 				</Disclosure.Panel>
