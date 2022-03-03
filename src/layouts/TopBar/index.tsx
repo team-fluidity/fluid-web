@@ -19,13 +19,15 @@ const TopBar = ({ className }: TopBarProps) => {
 		<div className={clsx(className, 'sticky top-0 w-full flex flex-col bg-white')}>
 			<Disclosure>
 				<div className='px-8 flex-1 flex justify-between items-center'>
-					<div className='py-4 text-4xl text-indigo-700 font-extrabold'>fluidity</div>
+					<div className='py-4 text-4xl text-indigo-700 font-extrabold'>
+						<a href='/'>fluidity</a>
+					</div>
 					{/* Desktop Header Items + Connect Wallet button */}
 					<div className='hidden sm:flex items-center gap-16 text-xl'>
-						<TopLink href="#fluidity" text="fluidity" />
+						{/* <TopLink href="#fluidity" text="fluidity" /> */}
 						<TopLink href="#team" text="team" />
 						<TopLink href="#faq" text="faq" />
-						<TopLink href="#start" text="start a stream" />
+						<TopLink href="/mint" text="start a stream" />
 					</div>
 					<div className='hidden sm:flex'>
 						<Wallet ens={connection.ens} userAddress={connection.userAddress} />
@@ -39,13 +41,13 @@ const TopBar = ({ className }: TopBarProps) => {
 				</div>
 				<Disclosure.Panel className='px-8 pb-4 text-gray-500'>
 					<div className='flex flex-col items-center gap-4'>
-						<Link href='#fluidity'>
+						{/* <Link href='#fluidity'>
 							<a>
 								<Disclosure.Button className='font-bold text-gray-700 hover:text-gray-500'>
 									about fluidity
 								</Disclosure.Button>
 							</a>
-						</Link>
+						</Link> */}
 						<Link href='#team'>
 							<a>
 								<Disclosure.Button className='font-bold text-gray-700 hover:text-gray-500'>team</Disclosure.Button>
