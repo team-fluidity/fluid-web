@@ -83,8 +83,8 @@ const Form = ({ onSubmit }: FormProps) => {
         </div>
         <form className='' onSubmit={handleSubmit}>
             <div className='flex gap-4 mt-4'>
-                <input style={{ borderColor: nftNameError ? 'red' : undefined }} value={nftName} onChange={e => setNftName(e.target.value)} id='nftname' type="text" className='w-3/6 px-3 form-control border border-solid border-gray-300 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none' placeholder='NFT Name'></input>
-                <input style={{ borderColor: nftSymbolError ? 'red' : undefined }} maxLength={5} value={nftSymbol} onChange={handleChangeSymbol} id='nft-symbol' type="text" className='w-3/6 px-3 form-control border border-solid border-gray-300 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none' placeholder='NFT Symbol'></input>
+                <input style={{ borderColor: nftNameError ? 'red' : undefined }} value={nftName} onChange={e => setNftName(e.target.value)} id='nftname' type="text" className='w-3/6 px-3 form-control border border-solid border-gray-300 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-black' placeholder='NFT Name'></input>
+                <input style={{ borderColor: nftSymbolError ? 'red' : undefined }} maxLength={5} value={nftSymbol} onChange={handleChangeSymbol} id='nft-symbol' type="text" className='w-3/6 px-3 form-control border border-solid border-gray-300 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-black' placeholder='NFT Symbol'></input>
             </div >
             <div className='w-96 flex gap-4'>
                 <button type='submit' className='float-left mt-6 py-2 px-4 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 hover:from-red-500 hover:to-red-700 text-white font-bold'>
