@@ -40,7 +40,7 @@ const Form = ({ onSubmit }: FormProps) => {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if (nftName || !nftSymbol) return;
+        if (!nftName || !nftSymbol) return;
         onSubmit(nftName, nftSymbol);
     }
 
