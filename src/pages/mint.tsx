@@ -1,15 +1,14 @@
 import type { NextPage } from 'next';
 
 import PageLayout from 'src/layouts/PageLayout';
+import { MintToken } from 'src/views/MainView/MintToken';
 
 const Mint: NextPage = () => {
-    return <>
+    return (
         <PageLayout>
-            <h1 className='text-7xl font-bold'>Mint</h1>
-
-            <p>Here you will be able to mint...</p>
+            <MintToken />
         </PageLayout>
-    </>
+    )
 }
 
 export default Mint;

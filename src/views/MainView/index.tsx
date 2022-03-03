@@ -4,9 +4,9 @@ import { useWriteContract } from '@web3-ui/hooks';
 import { TRADEABLE_CASHFLOW_ADDRESS } from 'src/constants';
 import { Web3ConNFT } from 'src/types/contracts';
 import Web3ConNFTJSON from 'src/abis/Web3ConNFT.json';
-import { StartStreaming } from './StartStreaming';
+import { MintToken } from './MintToken';
 import { Intro } from './Intro';
-import { ContractTesting } from './ContractTesting';
+import { ContractInfo } from './ContractInfo';
 import { Faq } from './Faq';
 import { Team } from './Team';
 
@@ -44,13 +44,10 @@ const MainView: FC<MainViewProps> = ({ className }) => {
 
 	return <>
 		<Intro />
-		<StartStreaming />
-		<ContractTesting nftContractItem={nftContractItem} />
+		{/* <MintToken /> */}
+		{/* <ContractTesting nftContractItem={nftContractItem} /> */}
 		<Team />
 		<Faq />
-		<section className='h-64' />
-		<section className='h-64' />
-		<section className='h-64' />
 	</>
 };
 
