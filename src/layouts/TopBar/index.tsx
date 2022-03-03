@@ -20,7 +20,7 @@ const TopBar = ({ className }: TopBarProps) => {
 			<Disclosure>
 				<div className='px-8 flex-1 flex justify-between items-center'>
 					<div className='py-4 text-4xl text-indigo-700 font-extrabold'>
-						<a href='/'>fluidity</a>
+						<Link href='/'>fluidity</Link>
 					</div>
 					{/* Desktop Header Items + Connect Wallet button */}
 					<div className='hidden sm:flex items-center gap-16 text-xl'>
