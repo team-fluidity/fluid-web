@@ -17,7 +17,7 @@ const tradeableCashflowABI = tradeableCashflowJSON.abi;
 //temporarily hardcode contract address and sender address
 //need to manually enter contract address and sender address here
 const deployedTradeableCashflow = require("../artifacts/contracts/FluidNFT.sol/Web3FluidNFT.json");
-const tradeableCashflowAddress = "0xE0Ea44183Dc1f766e5FAb221C9270c1383098441"; //hardcoded address
+const tradeableCashflowAddress = "0xE3B37aFC1400738f0D7807dcC214f31D41971770"; //hardcoded address
 //your address here:
 const _sender = "0xe2b8651bF50913057fF47FC4f02A8e12146083B8";
 
@@ -33,7 +33,7 @@ async function main() {
   const tradeableCashflow = new web3.eth.Contract(tradeableCashflowABI, tradeableCashflowAddress);
   
   const fDAIx = "0x5D8B4C2554aeB7e86F387B4d6c00Ac33499Ed01f"
-  const userData = web3.eth.abi.encodeParameter('string', 'ipfs://QmbawgkzWeUvKvUs7uac9j2n6FXQn4wQeg8athaEdifgZQ/1.json');
+ // const userData = web3.eth.abi.encodeParameter('string', 'ipfs://QmbawgkzWeUvKvUs7uac9j2n6FXQn4wQeg8athaEdifgZQ/1.json');
 
   const nonce = await web3.eth.getTransactionCount(_sender, 'latest'); // nonce starts counting from 0
 
@@ -55,7 +55,8 @@ async function main() {
      let txData = (await host.methods.callAgreement(
       cfaAddress, 
       cfaTx, 
-      userData
+      "0x"
+      //userData
     ).encodeABI());
     
 

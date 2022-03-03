@@ -16,7 +16,7 @@ const tradeableCashflowABI = tradeableCashflowJSON.abi;
 
   //temporarily hardcode contract address 
   const deployedTradeableCashflow = require("../artifacts/contracts/FluidNFT.sol/Web3FluidNFT.json");
-  const tradeableCashflowAddress = "0xE0Ea44183Dc1f766e5FAb221C9270c1383098441"; //hardcoded address
+  const tradeableCashflowAddress = "0xE3B37aFC1400738f0D7807dcC214f31D41971770"; //hardcoded address
 
 //delete a flow
 async function main() {
