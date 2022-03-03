@@ -1,5 +1,4 @@
 import { FC, FormEvent, useEffect, useState } from 'react';
-import clsx from 'clsx';
 import { useWallet, useWriteContract } from '@web3-ui/hooks';
 
 import hostJSON from 'src/abis/ISuperfluid.json';
@@ -58,7 +57,7 @@ const MainView: FC<MainViewProps> = ({ className }) => {
 	}
 
 	return (
-		<main className={clsx(className, 'w-full flex-1 flex flex-col items-center')}>
+		<>
 			<section className='max-w-7xl mx-auto w-full pt-40 px-8' id='fluidity'>
 				<h2 className='text-3xl font-bold'>Bootstrap your DAO with</h2>
 				<h1 className='text-7xl sm:text-[8rem] text-indigo-700 font-extrabold'>fluidity</h1>
@@ -214,7 +213,7 @@ const MainView: FC<MainViewProps> = ({ className }) => {
 			<section className='h-64' />
 			<section className='h-64' />
 			<section className='h-64' />
-		</main>
+		</>
 	);
 };
 
