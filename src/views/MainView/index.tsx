@@ -44,8 +44,8 @@ const MainView: FC<MainViewProps> = ({ className }) => {
 
 	return <>
 		<Intro />
-		<StartStreaming />
-		<ContractTesting nftContractItem={nftContractItem} />
+		{/* <StartStreaming /> */}
+		{/* <ContractTesting nftContractItem={nftContractItem} /> */}
 		<Team />
 		<Faq />
 		<section className='h-64' />

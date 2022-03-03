@@ -15,10 +15,13 @@ export const StartStreaming = () => {
             const contract = await factory.deploy(connection.userAddress, nftName, nftSymbol, HOST_ADDRESS, CFA_ADDRESS, FDAIX_ADDRESS, connection.userAddress);
             console.log('contract', contract);
         }
+        else {
+            console.log('Wallet not connected')
+        }
     };
 
     return <>
-        <section className='max-w-7xl mx-auto w-full pt-40 px-8' id='start'>
+        <section className='max-w-7xl mx-auto w-full pt-10 px-8' id='start'>
             <div>
                 <h1 className='text-7xl font-bold'>Start a stream</h1>
             </div>
@@ -41,7 +44,7 @@ const Form = ({ onSubmit }: FormProps) => {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if (nftName || !nftSymbol) return;
+        if (!nftName || !nftSymbol) return;
         onSubmit(nftName, nftSymbol);
     }
 
