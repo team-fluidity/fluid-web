@@ -1,12 +1,12 @@
 import type { NextPage } from 'next';
 
 import PageLayout from 'src/layouts/PageLayout';
-import { StartStreaming } from 'src/views/MainView/StartStreaming';
+import { MintToken } from 'src/views/MainView/MintToken';
 
 const Mint: NextPage = () => {
     return (
         <PageLayout>
-            <StartStreaming/>
+            <MintToken/>
         </PageLayout>
     )
 }
