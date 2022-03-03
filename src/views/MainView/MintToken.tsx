@@ -5,6 +5,7 @@ import { HOST_ADDRESS, CFA_ADDRESS, FDAIX_ADDRESS } from 'src/constants';
 import ConnectWallet from 'src/components/ConnectWallet';
 import Web3ConNFTJSON from 'src/abis/Web3ConNFT.json';
 import { ContractInfo } from './ContractInfo';
+import Button from 'src/components/button';
 
 export const MintToken = () => {
     const { connection, connected } = useWallet();
@@ -87,9 +88,9 @@ const Form = ({ onSubmit }: FormProps) => {
                 <Input isError={nftSymbolError} value={nftSymbol} onChange={handleChangeSymbol} />
             </div >
             <div className='w-96 flex gap-4'>
-                <button type='submit' className='float-left mt-6 py-2 px-4 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 hover:from-red-500 hover:to-red-700 text-white font-bold'>
+                <Button type='submit'>
                     Mint
-                </button>
+                </Button>
             </div>
         </form >
     </div >
