@@ -22,13 +22,12 @@ export const StartStreaming = () => {
             <div>
                 <h1 className='text-7xl font-bold'>Start a stream</h1>
             </div>
-            {connected ? (
-                <Form onSubmit={handleStartContract} />) : (
-                <div className='py-4'>
+            {connected
+                ? <Form onSubmit={handleStartContract} />
+                : <div className='py-4'>
                     <h1 className='bg-gradient-to-r'>Please connect your wallet to continue</h1>
-                    <ConnectWallet className='mt-4' />
-                </div>
-            )}
+                </div>}
+            {<div style={{ display: !connected ? 'flex' : 'none' }}><ConnectWallet className='mt-4' /></div>}
         </section>
     </>;
 };
