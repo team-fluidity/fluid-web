@@ -11,12 +11,12 @@ const cfaJSON = require("../artifacts/@superfluid-finance/ethereum-contracts/con
 const cfaABI = cfaJSON.abi;
 const cfaAddress = "0x49e565Ed1bdc17F3d220f72DF0857C26FA83F873";
 
-const tradeableCashflowJSON = require("../artifacts/contracts/NFT.sol/Web3ConNFT.json");
+const tradeableCashflowJSON = require("../artifacts/contracts/FluidNFT.sol/Web3FluidNFT.json");
 const tradeableCashflowABI = tradeableCashflowJSON.abi; 
 
   //temporarily hardcode contract address 
-  const deployedTradeableCashflow = require("../artifacts/contracts/NFT.sol/Web3conNFT.json");
-  const tradeableCashflowAddress = "0xDd229555c47cdBC1ba9D6c9560d635F65213B18f"; //hardcoded address
+  const deployedTradeableCashflow = require("../artifacts/contracts/FluidNFT.sol/Web3FluidNFT.json");
+  const tradeableCashflowAddress = "0xE0Ea44183Dc1f766e5FAb221C9270c1383098441"; //hardcoded address
 
 //delete a flow
 async function main() {
@@ -58,6 +58,7 @@ const web3 = new Web3(new Web3.providers.HttpProvider(process.env.MUMBAI_RPC_URL
     let tx = {
       'to': hostAddress,
       'gas': 3000000,
+      'gasPrice': 200000000000,
       'nonce': nonce,
       'data': txData
     }

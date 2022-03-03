@@ -11,13 +11,13 @@ const cfaJSON = require("../artifacts/@superfluid-finance/ethereum-contracts/con
 const cfaABI = cfaJSON.abi;
 const cfaAddress = "0x49e565Ed1bdc17F3d220f72DF0857C26FA83F873";
 
-const tradeableCashflowJSON = require("../artifacts/contracts/NFT.sol/Web3ConNFT.json");
+const tradeableCashflowJSON = require("../artifacts/contracts/FluidNFT.sol/Web3FluidNFT.json");
 const tradeableCashflowABI = tradeableCashflowJSON.abi; 
 
 //temporarily hardcode contract address and sender address
 //need to manually enter contract address and sender address here
-const deployedTradeableCashflow = require("../artifacts/contracts/NFT.sol/Web3ConNFT.json");
-const tradeableCashflowAddress = "0x810cf9524C9036dde8911b1EA25f1Ce548fcf50B"; //hardcoded address
+const deployedTradeableCashflow = require("../artifacts/contracts/FluidNFT.sol/Web3FluidNFT.json");
+const tradeableCashflowAddress = "0xE0Ea44183Dc1f766e5FAb221C9270c1383098441"; //hardcoded address
 //your address here:
 const _sender = "0xe2b8651bF50913057fF47FC4f02A8e12146083B8";
 
@@ -44,13 +44,12 @@ async function main() {
       let cfaTx = (await cfa.methods
      .createFlow(
       fDAIx,
-      // _sender,
       tradeableCashflowAddress,
       "3858024691358",
       "0x"
      )
      .encodeABI())
-
+  
      
 
      let txData = (await host.methods.callAgreement(
@@ -58,14 +57,17 @@ async function main() {
       cfaTx, 
       userData
     ).encodeABI());
+    
+
 
    // console.log("txDaTa:", txData);
 
     let tx = {
       'to': hostAddress,
       'gas': 3000000,
+      'gasPrice': 200000000000,
       'nonce': nonce,
-      'data': txData
+      'data':  txData
     }
 
     let signedTx = await web3.eth.accounts.signTransaction(tx, process.env.PRIVATE_KEY);
