@@ -26,21 +26,27 @@ export const MintToken = () => {
     };
 
     return <>
-        <section className='max-w-7xl mx-auto w-full pt-10 px-8' id='start'>
-            <div>
-                <h1 className='text-7xl font-bold'>Start a stream</h1>
-            </div>
-            {connected ? (
-                <Form onSubmit={handleStartContract} />) : (
-                <div className='py-4'>
-                    <h1 className='bg-gradient-to-r'>Please connect your wallet to continue</h1>
-                    <ConnectWallet className='mt-4' />
+        <section className='bg-gradient-to-r from-indigo-900 to-indigo-400 mx-auto w-full pt-10 h-screen' id='start'>
+            {!streamStarted ? (
+                <div className='pl-36 text-white'>
+                    <h1 className='text-7xl font-bold'>Start a stream</h1>
+                    {connected ? (
+                        <Form onSubmit={handleStartContract} />) : (
+                        <div className='py-4'>
+                            <h1 className=''>Please connect your wallet to continue</h1>
+                            <ConnectWallet className='mt-4' />
+                        </div>
+                    )}
+                </div>
+            ) : (
+                <div>
+                    <h1 className='pl-32 pb-8 text-7xl font-bold text-white'>Stream Started!</h1>
+                    <ContractInfo />
                 </div>
             )}
         </section>
-        {streamStarted && (
-            <ContractInfo />
-        )}
+
+        
     </>;
 };
 
@@ -62,8 +68,8 @@ const Form = ({ onSubmit }: FormProps) => {
         </div>
         <form className='' onSubmit={handleSubmit}>
             <div className='flex gap-4 mt-4'>
-                <input value={nftName} onChange={e => setNftName(e.target.value)} id='nftname' type="text" className='w-3/6 px-3 form-control border border-solid border-gray-300 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none' placeholder='NFT Name'></input>
-                <input value={nftSymbol} onChange={e => setNftSymbol(e.target.value)} id='nft-symbol' type="text" className='w-3/6 px-3 form-control border border-solid border-gray-300 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none' placeholder='NFT Symbol'></input>
+                <input value={nftName} onChange={e => setNftName(e.target.value)} id='nftname' type="text" className='w-3/6 px-3 form-control border border-solid border-gray-300 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-black' placeholder='NFT Name'></input>
+                <input value={nftSymbol} onChange={e => setNftSymbol(e.target.value)} id='nft-symbol' type="text" className='w-3/6 px-3 form-control border border-solid border-gray-300 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-black' placeholder='NFT Symbol'></input>
             </div>
             <div className='w-96 flex gap-4'>
                 <button type='submit' className='float-left mt-6 py-2 px-4 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 hover:from-red-500 hover:to-red-700 text-white font-bold'>
