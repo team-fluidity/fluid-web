@@ -27,7 +27,8 @@ const TopBar = ({ className }: TopBarProps) => {
 						{/* <TopLink href="#fluidity" text="fluidity" /> */}
 						<TopLink href="#team" text="team" />
 						<TopLink href="#faq" text="faq" />
-						<TopLink href="/mint" text="start a stream" />
+						<TopLink href="/mint" text="mint a token" />
+						<TopLink href='/manage' text='start a stream' />
 					</div>
 					<div className='hidden sm:flex'>
 						<Wallet ens={connection.ens} userAddress={connection.userAddress} />

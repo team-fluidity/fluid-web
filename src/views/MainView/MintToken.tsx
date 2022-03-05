@@ -30,7 +30,7 @@ export const MintToken = () => {
         <section className='bg-gradient-to-r from-indigo-900 to-indigo-400 mx-auto w-full pt-10 h-screen' id='start'>
             {!streamStarted ? (
                 <div className='pl-36 text-white'>
-                    <h1 className='text-7xl font-bold'>Start a stream</h1>
+                    <h1 className='text-7xl font-bold'>Mint a token</h1>
                     {connected ? (
                         <Form onSubmit={handleStartContract} />) : (
                         <div className='py-4'>
@@ -84,8 +84,8 @@ const Form = ({ onSubmit }: FormProps) => {
         </div>
         <form className='' onSubmit={handleSubmit}>
             <div className='flex gap-4 mt-4'>
-                <Input isError={nftNameError} value={nftName} onChange={e => setNftName(e.target.value)} />
-                <Input isError={nftSymbolError} value={nftSymbol} onChange={handleChangeSymbol} />
+                <Input isError={nftNameError} value={nftName} onChange={e => setNftName(e.target.value)} placeHolder='NFT Name' />
+                <Input isError={nftSymbolError} value={nftSymbol} onChange={handleChangeSymbol} placeHolder='NFT Symbol' />
             </div >
             <div className='w-96 flex gap-4'>
                 <Button type='submit'>
@@ -96,7 +96,7 @@ const Form = ({ onSubmit }: FormProps) => {
     </div >
 }
 
-const Input = ({ isError, value, onChange }: { isError: boolean; value: string; onChange: (e: ChangeEvent<HTMLInputElement>) => void }) => <>
+const Input = ({ isError, value, placeHolder, onChange }: { isError: boolean; value: string; placeHolder: string; onChange: (e: ChangeEvent<HTMLInputElement>) => void }) => <>
     <input
         style={{ borderColor: isError ? 'red' : undefined }}
         value={value}
@@ -104,6 +104,6 @@ const Input = ({ isError, value, onChange }: { isError: boolean; value: string; 
         id='nftname'
         type="text"
         className='w-3/6 px-3 form-control border border-solid border-gray-300 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-black'
-        placeholder='NFT Name'
+        placeholder={placeHolder}
     ></input>
 </>
